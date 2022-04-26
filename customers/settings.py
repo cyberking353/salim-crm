@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import decouple
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -139,12 +140,14 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')
 
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'saleemyoungarmy3@gmail.com'
-EMAIL_HOST_PASSWORD ='(s+a)//..'
+EMAIL_HOST_USER = decouple.config('EMAIL')
+EMAIL_HOST_PASSWORD = decouple.config('PASSWORD')
 DEFAULT_FROM_EMAIL = 'saleemyoungarmy3@gmail.com'
 
 '''
@@ -153,6 +156,6 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD ='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'
-DEFAULT_FROM_EMAIL = 'saleemyoungarmy3@gmail.com'
+EMAIL_HOST_PASSWORD = decouple.config('API_PASSWORD')
+DEFAULT_FROM_EMAIL = decouple.config('EMAIL')
 '''
